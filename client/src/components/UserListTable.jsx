@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
-import * as userService from "../services/userService"
+import { useEffect, useState } from "react";
+import * as userService from "../services/userService";
+import UserListItem from  "./UserListItem";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
@@ -68,7 +69,18 @@ const UserListTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <UserListItem />
+                    {users.map(user =>(
+                        <UserListItem
+                        key={user._id}
+                          createdAt={user.createdAt}
+                          email={user.email}
+                          firstName={user.firstName}
+                          lastName={user.lastName}
+                          phoneNumber={user.phoneNumber}
+                          imageUrl={user.imageUrl}
+
+                        />
+                    ))}
                 </tbody>
             </table>
         </div>
