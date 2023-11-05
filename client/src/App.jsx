@@ -1,6 +1,7 @@
 import Footer from './components/Footer';
 import Header from './components/Header';
 import UserList from './components/UserList';
+import UserListTable from './components/UserListTable';
 import './styles.css';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
       <Header />
       <main className="main">
           <UserList />
+
+          <UserListTable />
       </main>
 
       <Footer />
