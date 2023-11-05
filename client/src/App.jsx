@@ -4,7 +4,14 @@ function App() {
 
 
   return (
-    <h1>Hello Deni</h1>
+    <div>
+      <Header />
+      <main className="main">
+
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 
