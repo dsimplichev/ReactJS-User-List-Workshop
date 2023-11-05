@@ -10,6 +10,10 @@ const UserListTable = () => {
             .then(result => setUsers(result));
 
     }, []);
+
+    const creatUserClickHandler = () => {
+        
+    }
     return (
         <div className="table-wrapper">
 
@@ -83,6 +87,7 @@ const UserListTable = () => {
                     ))}
                 </tbody>
             </table>
+            <button className="btn-add btn" onClick={creatUserClickHandler} >Add new user</button>
         </div>
     )
 }
