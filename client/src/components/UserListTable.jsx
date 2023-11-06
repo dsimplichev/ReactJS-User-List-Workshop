@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
 import UserListItem from  "./UserListItem";
+import CreateUserModal from "./CreateUserModal";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
@@ -88,6 +89,8 @@ const UserListTable = () => {
                 </tbody>
             </table>
             <button className="btn-add btn" onClick={creatUserClickHandler} >Add new user</button>
+
+            <CreateUserModal />
         </div>
     )
 }
