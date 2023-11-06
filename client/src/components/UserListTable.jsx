@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
-import UserListItem from  "./UserListItem";
+import UserListItem from "./UserListItem";
 import CreateUserModal from "./CreateUserModal";
 
 const UserListTable = () => {
@@ -13,7 +13,7 @@ const UserListTable = () => {
     }, []);
 
     const creatUserClickHandler = () => {
-        
+
     }
     return (
         <div className="table-wrapper">
@@ -74,15 +74,15 @@ const UserListTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user =>(
+                    {users.map(user => (
                         <UserListItem
-                        key={user._id}
-                          createdAt={user.createdAt}
-                          email={user.email}
-                          firstName={user.firstName}
-                          lastName={user.lastName}
-                          phoneNumber={user.phoneNumber}
-                          imageUrl={user.imageUrl}
+                            key={user._id}
+                            createdAt={user.createdAt}
+                            email={user.email}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
+                            phoneNumber={user.phoneNumber}
+                            imageUrl={user.imageUrl}
 
                         />
                     ))}
