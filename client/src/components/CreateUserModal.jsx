@@ -1,12 +1,14 @@
-const CreateUserModal = () => {
-    return (
-        <div className="overlay">
+const CreateUserModal = (
+  hideModal,
+) => {
+  return (
+    <div className="overlay">
       <div className="backdrop"></div>
       <div className="modal">
         <div className="user-container">
           <header className="headers">
-            <h2>Edit User/Add User</h2>
-            <button className="btn close">
+            <h2>Add User</h2>
+            <button className="btn close" onClick={hideModal}>
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                 className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <path fill="currentColor"
@@ -93,15 +95,15 @@ const CreateUserModal = () => {
             </div>
             <div id="form-actions">
               <button id="action-save" className="btn" type="submit">Save</button>
-              <button id="action-cancel" className="btn" type="button">
+              <button id="action-cancel" className="btn" type="button" onClick={hideModal}>
                 Cancel
               </button>
             </div>
           </form>
         </div>
       </div>
-    </div> 
-    )
+    </div>
+  );
 };
 
 export default CreateUserModal
