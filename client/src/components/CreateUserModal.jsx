@@ -1,6 +1,7 @@
 const CreateUserModal = ({
   hideModal,
   onUserCreate,
+  
 }) => {
   return (
     <div className="overlay">
