@@ -1,6 +1,6 @@
-const CreateUserModal = (
+const CreateUserModal = ({
   hideModal,
-) => {
+}) => {
   return (
     <div className="overlay">
       <div className="backdrop"></div>
