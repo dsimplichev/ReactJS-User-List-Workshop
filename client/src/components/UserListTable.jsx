@@ -9,7 +9,8 @@ const UserListTable = () => {
 
     useEffect(() => {
         userService.getAll()
-            .then(result => setUsers(result));
+            .then(result => setUsers(result))
+            .catch(err => console.log(err));
 
     }, []);
 
@@ -20,9 +21,23 @@ const UserListTable = () => {
     const hideCreateUserModal = () => {
         setShowCreate(false);
     }
+
+    const userCreateHandler = async (e) => {
+        e.preventDefault();
+        
+
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        const result = await userService.create(data);
+
+        setShowCreate(false);
+    }
     return (
         <div className="table-wrapper">
-            {showCreate && <CreateUserModal hideModal={hideCreateUserModal} />}
+            {showCreate &&
+                <CreateUserModal
+                    hideModal={hideCreateUserModal}
+                    onUserCreate={userCreateHandler}
+                />}
 
             <table className="table">
                 <thead>
