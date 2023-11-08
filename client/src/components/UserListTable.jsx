@@ -9,6 +9,7 @@ const UserListTable = () => {
     const [showCreate, setShowCreate] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [showDelete, setShowDelete] = useState(false)
 
     useEffect(() => {
         userService.getAll()
@@ -41,7 +42,10 @@ const UserListTable = () => {
     const userInfoClickHandler = async (userId) => {
         setSelectedUser(userId);
         setShowInfo(true)
+
     }
+
+
     return (
         <div className="table-wrapper">
             {showCreate &&
@@ -57,6 +61,8 @@ const UserListTable = () => {
                     userId={selectedUser}
                 />
             )}
+
+            {showDelete && <UserDeleteModal />}
 
             <table className="table">
                 <thead>
