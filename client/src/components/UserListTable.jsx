@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import * as userService from "../services/userService";
 import UserListItem from "./UserListItem";
 import CreateUserModal from "./CreateUserModal";
+import UserInfoModal from "./UserInfoModal"
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
         userService.getAll()
@@ -36,8 +38,9 @@ const UserListTable = () => {
 
 
     }
-    const userInfoClickHandler = (userId) => {
-        console.log(userId)
+    const userInfoClickHandler = async (userId) => {
+        setSelectedUser(userId);
+        setShowInfo(true)
     }
     return (
         <div className="table-wrapper">
@@ -48,7 +51,12 @@ const UserListTable = () => {
 
                 />}
 
-            {showInfo && <UserInfoModal hideModal={() => setShowInfo(false)} />}
+            {showInfo && (
+                <UserInfoModal
+                    hideModal={() => setShowInfo(false)}
+                    userId={selectedUser}
+                />
+            )}
 
             <table className="table">
                 <thead>
