@@ -3,6 +3,7 @@ import * as userService from "../services/userService";
 import UserListItem from "./UserListItem";
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal"
+import UserDeleteModal from "./UserDeleteModal";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
@@ -44,6 +45,14 @@ const UserListTable = () => {
         setShowInfo(true)
 
     }
+    const deleteUserClickHandler = (userId) => {
+        setSelectedUser(userId);
+        setShowDelete(true);
+
+    }
+    const deleteUserHandler = async (userId) => {
+       
+    }
 
 
     return (
@@ -62,7 +71,7 @@ const UserListTable = () => {
                 />
             )}
 
-            {showDelete && <UserDeleteModal />}
+            {showDelete && <UserDeleteModal hideModal={() => setShowDelete(false)} onDelete={deleteUserHandler} />}
 
             <table className="table">
                 <thead>
@@ -131,7 +140,7 @@ const UserListTable = () => {
                             phoneNumber={user.phoneNumber}
                             imageUrl={user.imageUrl}
                             onInfoClick={userInfoClickHandler}
-
+                            onDeleteClick={deleteUserClickHandler}
                         />
                     ))}
                 </tbody>
