@@ -4,6 +4,7 @@ import UserListItem from "./UserListItem";
 import CreateUserModal from "./CreateUserModal";
 import UserInfoModal from "./UserInfoModal"
 import UserDeleteModal from "./UserDeleteModal";
+import LoadingSpinner from "./LoadingSpinner";
 
 const UserListTable = () => {
     const [users, setUsers] = useState([]);
@@ -11,12 +12,18 @@ const UserListTable = () => {
     const [showInfo, setShowInfo] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showDelete, setShowDelete] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
+        setIsLoading(true);
+
         userService.getAll()
             .then(result => setUsers(result))
-            .catch(err => console.log(err));
-
+            .catch(err => console.log(err))
+            .finally( () =>
+                setIsLoading(false)
+            );
     }, []);
 
     const creatUserClickHandler = () => {
@@ -50,12 +57,12 @@ const UserListTable = () => {
         setShowDelete(true);
 
     }
-    const deleteUserHandler = async (userId) => {
-       const result = await userService.remove(selectedUser);
-       
-       setUsers(state => state.filter(user => user._id !== selectedUser));
-       
-       setShowDelete(false);
+    const deleteUserHandler = async () => {
+        await userService.remove(selectedUser);
+
+        setUsers(state => state.filter(user => user._id !== selectedUser));
+
+        setShowDelete(false);
 
     }
 
@@ -77,6 +84,8 @@ const UserListTable = () => {
             )}
 
             {showDelete && <UserDeleteModal hideModal={() => setShowDelete(false)} onDelete={deleteUserHandler} />}
+              
+            {isLoading  && <LoadingSpinner />}
 
             <table className="table">
                 <thead>
